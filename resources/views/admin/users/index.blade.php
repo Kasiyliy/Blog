@@ -25,10 +25,10 @@
                                 <p>{{$user->name}}</p>
                             </td>
                             <td>
-                                <p>{{$user->name}}</p>
+                                <p>Permissions</p>
                             </td>
                             <td>
-                                <a href="{{route('user.delete', ['id' => $tag->id])}}" class="btn btn-xs btn-danger">
+                                <a class="btn btn-xs btn-danger text-white">
                                     <span class="fa fa-trash"></span>
                                 </a>
                             </td>
