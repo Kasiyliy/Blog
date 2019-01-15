@@ -19,13 +19,17 @@
                     @foreach($users as $user)
                         <tr>
                             <td>
-                                <img class="img-fluid" src="{{ $user->avatar}}" alt="{{$user->name}}" width="50px" height="50px">
+                                <img class="img-fluid" src="{{ asset($user->profile->avatar)}}" alt="{{$user->name}}" width="50px" height="50px">
                             </td>
                             <td>
                                 <p>{{$user->name}}</p>
                             </td>
                             <td>
-                                <p>Permissions</p>
+                                @if($user->admin)
+                                    Admin
+                                @else
+                                    <a href="{{route('user.admin')}}" class="btn btn-success btn-xs">Make admin</a>
+                                @endif
                             </td>
                             <td>
                                 <a class="btn btn-xs btn-danger text-white">
