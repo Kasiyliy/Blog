@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Session;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -99,6 +104,30 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::find($id);
+
+        $user->profile->delete();
+
+        $user->delete();
+
+        Session::flash('success',"User deleted!");
+
+        return redirect()->back();
+    }
+
+    public function admin($id){
+        $user = User::findOrFail($id);
+        $user->admin=1;
+        $user->save();
+        Session::flash('success', 'Admin permission granted succesfully!');
+        return redirect()->back();
+    }
+
+    public function removeAdmin($id){
+        $user = User::findOrFail($id);
+        $user->admin=0;
+        $user->save();
+        Session::flash('warning', 'Admin permission not granted!');
+        return redirect()->back();
     }
 }
