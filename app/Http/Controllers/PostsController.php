@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\URL;
 use Session;
 use App\Post;
 use Illuminate\Http\Request;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -44,9 +45,10 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        if($categories->count() == 0){
-            Session::flash('info' , 'You must have some categories');
+        if($categories->count() == 0 || $tags->count() == 0){
+            Session::flash('info' , 'You must have some categories or tags');
             return redirect()->back();
         }
 
@@ -84,6 +86,7 @@ class PostsController extends Controller
             'featured' => '/uploads/posts/'.$featured_new_name,
             'category_id' => $request->category_id,
             'slug' => str_slug($request->title),
+            'user_id' => Auth::id()
         ]);
 
         $post->tags()->attach($request->tags);

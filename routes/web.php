@@ -15,8 +15,35 @@ Route::get('/test', function(){
     return (App\Profile::find(1)->user);
 });
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [
+    'uses' => 'FrontEndController@index',
+    'as' => 'index'
+]);
+
+Route::get('/post/{slug}',[
+    'uses' => 'FrontEndController@singlePost',
+    'as' => 'post.single'
+]);
+
+Route::get('/category/{id}',[
+   'uses' => 'FrontEndController@category',
+   'as' => 'category.single'
+]);
+
+Route::get('/tag/{id}',[
+    'uses' => 'FrontEndController@tag',
+    'as' => 'tag.single'
+]);
+
+Route::get('/results',function() {
+
+    $posts = \App\Post::where('title', 'like', '%' . request('query') . '%')->get();
+    return view('results')
+        ->with('posts',$posts)
+        ->with('title', 'Search results: ' .request('query'))
+        ->with('settings', \App\Setting::first())
+        ->with('categories', \App\Category::take(5)->get())
+        ->with('query',request('query'));
 });
 
 Auth::routes();
@@ -25,7 +52,7 @@ Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->name('home');
 
 
     Route::get('/post/create', [
@@ -148,9 +175,41 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'as' => 'user.store'
     ]);
 
-    Route::post('/users/admin/{id}', [
+    Route::get('/users/admin/{id}',[
         'uses' => 'UsersController@admin',
-        'as' => 'user.admin'
+        'as' => 'user.admin',
+    ])->middleware('admin');
+
+    Route::get('/users/remove/admin/{id}',[
+        'uses' => 'UsersController@removeAdmin',
+        'as' => 'user.admin.remove',
+    ])->middleware('admin');
+
+    Route::get('/user/profile',[
+        'uses'=> 'ProfilesController@index',
+        'as' => 'user.profile',
     ]);
+
+    Route::post('/user/profile/update',[
+        'uses' => 'ProfilesController@update',
+        'as' => 'user.profile.update',
+    ]);
+
+    Route::get('/user/delete/{id}',[
+        'uses' => 'UsersController@destroy',
+        'as' => 'user.delete',
+    ]);
+
+    Route::get('/settings',[
+        'uses' => 'SettingsController@index',
+        'as' => 'settings',
+        ]);
+
+    Route::post('/settings.update',[
+        'uses' => 'SettingsController@update',
+        'as' => 'settings.update',
+    ]);
+
+
 });
 

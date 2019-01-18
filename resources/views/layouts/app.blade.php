@@ -18,6 +18,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
+    @yield('styles')
+
 </head>
 <body>
     <div id="app">
@@ -103,12 +105,22 @@
                             <li class="list-group-item">
                                 <a href="{{ route('tag.create') }}">Create new tag</a>
                             </li>
+                            @if(Auth::user()->admin)
                             <li class="list-group-item">
                                 <a href="{{ route('user.index') }}">Users</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('user.create') }}">Create new user</a>
                             </li>
+                            @endif
+                            <li class="list-group-item">
+                                <a href="{{ route('user.profile') }}">My profile</a>
+                            </li>
+                            @if(Auth::user()->admin)
+                            <li class="list-group-item">
+                                <a href="{{ route('settings') }}">Settings</a>
+                            </li>
+                                @endif
                         </ul>
                     </div>
                     @endif
@@ -133,6 +145,16 @@
             toastr.info("{{Session::get('info')}}");
         @endif
 
+        @if(Session::has('error'))
+        toastr.info("{{Session::get('error')}}");
+        @endif
+
+        @if(Session::has('warning'))
+        toastr.info("{{Session::get('warning')}}");
+        @endif
+
     </script>
+
+        @yield('scripts')
 </body>
 </html>

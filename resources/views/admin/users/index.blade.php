@@ -19,22 +19,25 @@
                     @foreach($users as $user)
                         <tr>
                             <td>
-                                <img class="img-fluid" src="{{ asset($user->profile->avatar)}}" alt="{{$user->name}}" width="50px" height="50px">
+                                <img class="img-fluid" src="/{{ $user->profile->avatar}}" alt="{{$user->name}}" width="50px" height="50px">
                             </td>
                             <td>
                                 <p>{{$user->name}}</p>
                             </td>
                             <td>
                                 @if($user->admin)
-                                    Admin
-                                @else
-                                    <a href="{{route('user.admin')}}" class="btn btn-success btn-xs">Make admin</a>
-                                @endif
+                                    <a class = "btn-danger btn" href="{{route('user.admin.remove',['id' => $user->id])}}">Remove admin</a>
+                                 @else
+                                    <a class = "btn-success btn" href="{{route('user.admin',['id'=> $user->id])}}">Make admin</a>
+                                  @endif
                             </td>
+
                             <td>
-                                <a class="btn btn-xs btn-danger text-white">
+                                @if(Auth::id() !== $user->id)
+                                <a class="btn btn-xs btn-danger text-white" href="{{route('user.delete',['id' => $user->id])}}">
                                     <span class="fa fa-trash"></span>
                                 </a>
+                                    @endif
                             </td>
                         </tr>
                     @endforeach
