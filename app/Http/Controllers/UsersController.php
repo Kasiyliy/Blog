@@ -55,7 +55,7 @@ class UsersController extends Controller
 
         $profile = Profile::create([
             'user_id' => $user->id,
-            'avatar' => 'uploads/avatars/1.jpg',
+            'avatar' => 'uploads/avatars/default_avatar.jpg',
         ]);
 
         Session::flash('success', 'User added successfully!');
@@ -130,10 +130,5 @@ class UsersController extends Controller
         $user->save();
         Session::flash('warning', 'Admin permission not granted!');
         return redirect()->back();
-    }
-
-    public function admin($id)
-    {
-        //
     }
 }

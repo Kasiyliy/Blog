@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-class UsersController extends Controller
+class UserController extends Controller
 {
     public $successStatus = 200;
     /**
@@ -21,7 +21,7 @@ class UsersController extends Controller
             return response()->json(['success' => $success], $this-> successStatus);
         }
         else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json(['error'=>'Unauthorized'], 401);
         }
     }
     /**
