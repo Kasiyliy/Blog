@@ -42,9 +42,18 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json(['success'=>!$validator->errors()], 401);
         }
+
+        $checkUser = User::where('email' , $request['email'])->get()->first();
+        if($checkUser){
+            return response()->json(['success'=>false, 'message' => 'user with this email already exists']);
+        }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $user = User::create([
+            'password' => $input['password'],
+            'email' => $input['email'],
+            'name' => $input['name']
+        ]);
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
 
