@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Tag;
 use Illuminate\Http\Request;

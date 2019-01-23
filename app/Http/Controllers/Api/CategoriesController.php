@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class CategoriesController extends Controller
