@@ -50,18 +50,19 @@
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
+                @if($first_post)
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
-                    <div class="post-thumb">
-                        <img src="{{$first_post->featured}}" alt="{{$first_post->title}}">
-                        <div class="overlay"></div>
-                        <a href="{{$first_post->featured}}" class="link-image js-zoom-image">
-                            <i class="seoicon-zoom"></i>
-                        </a>
-                        <a href="#" class="link-post">
-                            <i class="seoicon-link-bold"></i>
-                        </a>
-                    </div>
+                        <div class="post-thumb">
+                            <img src="{{$first_post->featured}}" alt="{{$first_post->title}}">
+                            <div class="overlay"></div>
+                            <a href="{{$first_post->featured}}" class="link-image js-zoom-image">
+                                <i class="seoicon-zoom"></i>
+                            </a>
+                            <a href="#" class="link-post">
+                                <i class="seoicon-link-bold"></i>
+                            </a>
+                        </div>
 
                     <div class="post__content">
 
@@ -98,12 +99,14 @@
                     </div>
 
                 </article>
+                @endif
             </div>
             <div class="col-lg-2"></div>
         </div>
 
         <div class="row">
             <div class="col-lg-6">
+                @if($second_post)
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                     <div class="post-thumb">
@@ -152,8 +155,10 @@
                     </div>
 
                 </article>
+                @endif
             </div>
             <div class="col-lg-6">
+                @if($third_post)
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                     <div class="post-thumb">
@@ -202,6 +207,7 @@
                     </div>
 
                 </article>
+                @endif
             </div>
         </div>
     </div>
@@ -215,7 +221,7 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                 <div class="heading">
-                                    <h4 class="h1 heading-title">{{$tutorial->name}}</h4>
+                                    <h4 class="h1 heading-title">{{$tutorial ? $tutorial->name : ""}}</h4>
                                     <div class="heading-line">
                                         <span class="short-line"></span>
                                         <span class="long-line"></span>
@@ -225,21 +231,23 @@
                         </div>
                         <div class="row">
                             <div class="case-item-wrap">
-                                @foreach($tutorial->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="case-item">
-                                            <div class="case-item__thumb">
-                                                <img src="{{$post->featured}}" alt="{{$post->title}}">
+                                @if($tutorial)
+                                    @foreach($tutorial->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="case-item">
+                                                <div class="case-item__thumb">
+                                                    <img src="{{$post->featured}}" alt="{{$post->title}}">
+                                                </div>
+                                                <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a></h6>
                                             </div>
-                                            <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a></h6>
                                         </div>
-                                    </div>
-                                @endforeach
-
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="padded-50"></div>
+                    @if($python)
                     <div class="offers">
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -254,7 +262,7 @@
                         </div>
                         <div class="row">
                             <div class="case-item-wrap">
-                                @foreach($python->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
+                            @foreach($python->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                         <div class="case-item">
                                             <div class="case-item__thumb">
@@ -267,7 +275,9 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="padded-50"></div>
+                    @if($laravel)
                     <div class="offers">
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -295,6 +305,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="padded-50"></div>
                 </div>
             </div>

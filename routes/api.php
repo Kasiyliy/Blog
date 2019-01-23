@@ -13,11 +13,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
-Route::get('categories', 'API\CategoriesController@index');
-Route::get('categories/{id}', 'API\CategoriesController@show');
+Route::post('login', 'Api\UserController@login');
+Route::post('register', 'Api\UserController@register');
+
+Route::get('categories', 'Api\CategoriesController@index');
+Route::get('categories/{id}', 'Api\CategoriesController@show');
+
+Route::get('posts', 'Api\PostsController@index');
+Route::get('posts/{id}', 'Api\PostsController@show');
+
+Route::get('tags', 'Api\TagsController@index');
+Route::get('tags/{id}', 'Api\TagsController@show');
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('categories/{id}/delete', 'API\CategoriesController@delete');
+
+    Route::post('categories/{id}/delete', 'Api\CategoriesController@delete');
+    Route::post('categories', 'Api\CategoriesController@store');
+
+    Route::post('posts/{id}/delete', 'Api\PostsController@delete');
+    Route::post('posts', 'Api\PostsController@store');
+
+    Route::post('tags/{id}/delete', 'Api\TagsController@delete');
+    Route::post('tags', 'Api\TagsController@store');
+
 });

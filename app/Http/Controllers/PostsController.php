@@ -20,7 +20,12 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
+        $posts = [];
+        if(Auth::user()->admin){
+            $posts = Post::where('user_id', Auth::id())->get();
+        }else{
+            $posts = Post::all();
+        }
         return view('admin.posts.index')
             ->with('posts', $posts);
     }

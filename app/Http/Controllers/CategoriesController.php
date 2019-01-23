@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Category;
 use Illuminate\Http\Request;
@@ -79,10 +80,14 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category->name = $request->name;
-        $category->save();
-        Session::flash('success' , 'You successfully updated category!');
+        if(Auth::user()->admin) {
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->save();
+            Session::flash('success', 'You successfully updated category!');
+        }else{
+            Session::flash('error' , 'You do not have enough permisison!');
+        }
         return redirect()->route('category.index');
     }
 
@@ -94,13 +99,19 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        foreach ($category->posts as $post)
-        {
-            $post->forceDelete();
+        if(Auth::user()->admin){
+            $category = Category::find($id);
+            foreach ($category->posts as $post)
+            {
+                $post->forceDelete();
+            }
+            $category->delete();
+            Session::flash('success' , 'You successfully deleted category!');
+        }else{
+            Session::flash('error' , 'You do not have enough permisison!');
         }
-        $category->delete();
-        Session::flash('success' , 'You successfully deleted category!');
+
+
         return redirect()->route('category.index');
     }
 }

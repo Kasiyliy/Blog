@@ -38,13 +38,19 @@ class UserController extends Controller
             'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            return response()->json(['success'=>!$validator->errors()], 401);
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
+
+        $profile = Profile::create([
+            'user_id' => $user->id,
+            'avatar' => 'uploads/avatars/default_avatar.jpg',
+        ]);
+
         return response()->json(['success'=>$success], $this-> successStatus);
     }
     /**

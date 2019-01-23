@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Category;
+use Validator;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
-use Validator;
 
-class CategoriesController extends Controller
+class TagsController extends Controller
 {
-
     public function index(){
-        $categories = Category::all();
-        return response()->json( $categories );
+        $tags = Tag::all();
+        return response()->json( $tags );
     }
 
     public function show($id){
-        $category = Category::find($id);
-        if($category){
-            return response()->json(['success' =>true], $category );
+        $tag = Tag::find($id);
+        if($tag){
+            return response()->json(['success' =>true], $tag );
         }else{
             return response()->json(['success' =>false, 'message' =>'not found'] );
         }
@@ -27,9 +25,9 @@ class CategoriesController extends Controller
 
     public function delete($id){
         if(Auth::user()->admin){
-            $category = Category::find($id);
-            if($category){
-                $category->delete();
+            $tag = Tag::find($id);
+            if($tag){
+                $tag->delete();
                 return response()->json(['success' =>true]);
             }else{
                 return response()->json(['success' =>false] );
@@ -41,9 +39,6 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        if(!Auth::user()->admin){
-            return response()->json(['success' =>false] );
-        }
         $validator = Validator::make($request->all(), [
             'name' =>'required'
         ]);
@@ -51,12 +46,9 @@ class CategoriesController extends Controller
             return response()->json(['success'=>!$validator->errors()], 401);
         }
 
-        $category = new Category;
-        $category->name = $request->name;
-        $category->save();
+        $tag = new Tag;
+        $tag->name = $request->name;
+        $tag->save();
         return response()->json(['success' =>true]);
     }
-
-
-
 }
