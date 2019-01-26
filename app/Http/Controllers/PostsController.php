@@ -21,7 +21,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = [];
-        if(Auth::user()->admin){
+        if(!Auth::user()->admin){
             $posts = Post::where('user_id', Auth::id())->get();
         }else{
             $posts = Post::all();
@@ -84,7 +84,7 @@ class PostsController extends Controller
         $featured_new_name = time().$featured->getClientOriginalName();
 
         $featured->move('uploads/posts',$featured_new_name);
-
+        dd($request->tags);
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
