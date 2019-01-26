@@ -76,7 +76,7 @@ class PostsController extends Controller
             $posts = Post::where('user_id', $user->id)->get();
         }
 
-        return response()->json(['success' => true], $posts );
+        return response()->json($posts );
 
     }
 
