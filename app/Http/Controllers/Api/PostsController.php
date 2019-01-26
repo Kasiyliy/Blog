@@ -69,6 +69,17 @@ class PostsController extends Controller
         return response()->json(['success' =>true]);
     }
 
+    public function myPosts(){
+        $user = Auth::user();
+        $posts = [];
+        if($user){
+            $posts = Post::where('user_id', $user->id)->get();
+        }
+
+        return response()->json(['success' => true], $posts );
+
+    }
+
     public function update(Request $request, $id)
     {
 

@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('categories', 'Api\CategoriesController@store');
 
     Route::post('posts/{id}/delete', 'Api\PostsController@delete');
+    Route::post('posts/my', 'Api\PostsController@myPosts');
     Route::post('posts', 'Api\PostsController@store');
     Route::post('posts/update/{id}','PostsController@update');
 
