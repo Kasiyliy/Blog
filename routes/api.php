@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('posts/{id}/delete', 'Api\PostsController@delete');
     Route::post('my/posts', 'Api\PostsController@myPosts');
     Route::post('posts', 'Api\PostsController@store');
-    Route::post('posts/update/{id}','PostsController@update');
+    Route::post('posts/update/{id}','Api\PostsController@update');
 
     Route::post('tags/{id}/delete', 'Api\TagsController@delete');
     Route::post('tags', 'Api\TagsController@store');

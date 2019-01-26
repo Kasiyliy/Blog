@@ -52,7 +52,8 @@ class PostsController extends Controller
         $featured = $request->featured;
 
         $featured_new_name = time().$featured->getClientOriginalName();
-        dd($request->tags);
+        $request->tags = $this->strToArray($request->tags);
+
         $featured->move('uploads/posts',$featured_new_name);
 
         $post = Post::create([
@@ -68,6 +69,12 @@ class PostsController extends Controller
 
         return response()->json(['success' =>true]);
     }
+
+    private function strToArray($str){
+        $str = substr($str, 1, strlen($str) - 2);
+        return explode(",", $str);
+    }
+
 
     public function myPosts(){
         $user = Auth::user();
@@ -92,6 +99,8 @@ class PostsController extends Controller
             'tags' =>'required'
         ]);
 
+        $request->tags = $this->strToArray($request->tags);
+
         if($request->hasFile('featured'))
         {
             $featured = $request->featured;
@@ -102,7 +111,7 @@ class PostsController extends Controller
 
             $post->featured = '/uploads/posts/'.$featured_new_name;
         }
-
+        
 
         $post->title= $request->title;
         $post->content = $request->content;
