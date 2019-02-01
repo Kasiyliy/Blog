@@ -111,7 +111,7 @@ class PostsController extends Controller
 
             $post->featured = '/uploads/posts/'.$featured_new_name;
         }
-        
+
 
         $post->title= $request->title;
         $post->content = $request->content;

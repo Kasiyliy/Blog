@@ -105,6 +105,9 @@
                             <li class="list-group-item">
                                 <a href="{{ route('tag.create') }}">Create new tag</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('follower.index') }}">My follows</a>
+                            </li>
                             @if(Auth::user()->admin)
                             <li class="list-group-item">
                                 <a href="{{ route('user.index') }}">Users</a>

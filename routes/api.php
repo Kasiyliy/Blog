@@ -38,4 +38,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('tags/{id}/delete', 'Api\TagsController@delete');
     Route::post('tags', 'Api\TagsController@store');
 
+    Route::post('follows', 'Api\FollowerController@index');
+    Route::post('show/{id}', 'Api\FollowerController@show');
+    Route::post('check/{id}', 'Api\FollowerController@check');
+
 });

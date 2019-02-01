@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Follower;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class HomeController extends Controller
             ->with('posts_count', Auth::user()->admin ? Post::all()->count() : Post::where('user_id' , Auth::id())->get()->count())
             ->with('trash_posts_count', Auth::user()->admin ? Post::onlyTrashed()->get()->count() : Post::onlyTrashed()->where('user_id' , Auth::id())->get()->count())
             ->with('users_count', User::all()->count())
-            ->with('categories_count', Category::all()->count());
+            ->with('categories_count', Category::all()->count())
+            ->with('followers_count', Auth::user()->admin ? Follower::all()->count() : Follower::where('user_id', Auth::id())->get()->count());
     }
 }

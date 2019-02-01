@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/primary-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/magnific-popup.css')}}">
 
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
     <!--Styles for RTL-->
 
     <!--<link rel="stylesheet" type="text/css" href="app/css/rtl.css">-->
@@ -142,7 +143,26 @@
 <script src="{{asset('app/js/animation.velocity.min.js')}}"></script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c400f455182aa46"></script>
 
+<script src="{{ asset('js/toastr.min.js') }}" ></script>
+<script  type="text/javascript">
+    toastr.options.closeButton = true;
+    @if(Session::has('success'))
+    toastr.success("{{Session::get('success')}}");
+    @endif
 
+    @if(Session::has('info'))
+    toastr.info("{{Session::get('info')}}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.info("{{Session::get('error')}}");
+    @endif
+
+    @if(Session::has('warning'))
+    toastr.info("{{Session::get('warning')}}");
+    @endif
+
+</script>
 <!-- ...end JS Script -->
 
 </body>

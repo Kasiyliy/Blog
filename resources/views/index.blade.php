@@ -407,7 +407,6 @@
 <script src="{{asset('app/js/ScrollMagic.min.js')}}"></script>
 <script src="{{asset('app/js/animation.velocity.min.js')}}"></script>
 
-
 <!-- ...end JS Script -->
 
 </body>

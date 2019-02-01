@@ -43,6 +43,25 @@ Route::get('/results',function() {
         ->with('query',request('query'));
 });
 
+
+Route::post('/follow/{id}',[
+    'uses' => 'FollowersController@follow',
+    'as' => 'follow'
+]);
+
+Route::post('/followers/delete/{id}',[
+    'uses' => 'FollowersController@destroy',
+    'as' => 'followers.delete'
+]);
+
+
+Route::get('/followers',[
+    'uses' => 'FollowersController@index',
+    'as' => 'follower.index'
+]);
+
+
+
 Auth::routes();
 
 
@@ -202,10 +221,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'as' => 'settings',
         ]);
 
-    Route::post('/settings.update',[
+    Route::post('/settings/update',[
         'uses' => 'SettingsController@update',
         'as' => 'settings.update',
     ]);
+
+
 
 
 });

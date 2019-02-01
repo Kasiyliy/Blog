@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Follower;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
 use App\Setting;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {
     public function index()
     {
+
+
         return view('index')
             ->with('title', Setting::first()->site_name)
             ->with('categories', Category::take(5)->get())
@@ -38,7 +42,8 @@ class FrontEndController extends Controller
             ->with('categories', Category::take(5)->get())
             ->with('next', Post::find($next_id))
             ->with('prev', Post::find($prev_id))
-            ->with('tags', Tag::all());
+            ->with('tags', Tag::all())
+            ->with('followers', Follower::where('user_id', Auth::id())->where('post_id' , $post->id)->get()->first());;
 
 
     }

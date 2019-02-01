@@ -5,6 +5,21 @@
     <div class="stunning-header stunning-header-bg-lightviolet">
         <div class="stunning-header-content">
             <h1 class="stunning-header-title">{{$post->title}}</h1>
+            @if(!$followers)
+                <form action="{{route('follow' , ['id' =>$post->id])}}" method="POST">
+                    {{csrf_field()}}
+                    <h2 class="post__title entry-title text-center">
+                        <button class="btn btn-danger" style="color: black" type="submit">Follow</button>
+                    </h2>
+                </form>
+            @else
+                <form action="{{route('followers.delete' , ['id' =>$followers->id])}}" method="POST">
+                    {{csrf_field()}}
+                    <h2 class="post__title entry-title text-center">
+                        <button class="btn btn-danger" style="color: black" type="submit">Unfollow</button>
+                    </h2>
+                </form>
+            @endif
         </div>
     </div>
 
@@ -22,7 +37,6 @@
 
 
                             <div class="post-additional-info">
-
                                 <div class="post__author author vcard">
                                     Posted by
 
@@ -46,7 +60,6 @@
                                 <i class="seoicon-tags"></i>
                                 <a href="{{route('category.single', ['id' => $post->category->id])}}">{{$post->category->name}}</a>
                             </span>
-
                             </div>
 
                             <div class="post__content-info">
@@ -188,5 +201,25 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/toastr.min.js') }}" ></script>
+    <script>
+        toastr.options.closeButton = true;
+        @if(Session::has('success'))
+        toastr.success("{{Session::get('success')}}");
+        @endif
 
+        @if(Session::has('info'))
+        toastr.info("{{Session::get('info')}}");
+        @endif
+
+        @if(Session::has('error'))
+        toastr.info("{{Session::get('error')}}");
+        @endif
+
+        @if(Session::has('warning'))
+        toastr.info("{{Session::get('warning')}}");
+        @endif
+
+    </script>
 @endsection
+
