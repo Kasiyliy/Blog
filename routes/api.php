@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('tags', 'Api\TagsController@store');
 
     Route::post('follows', 'Api\FollowerController@index');
-    Route::post('show/{id}', 'Api\FollowerController@show');
-    Route::post('check/{id}', 'Api\FollowerController@check');
+    Route::post('follows/show/{id}', 'Api\FollowerController@show');
+    Route::post('follows/check/{id}', 'Api\FollowerController@check');
 
 });
