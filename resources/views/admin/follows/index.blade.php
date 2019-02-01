@@ -17,7 +17,7 @@
                     @foreach($followers as $follower)
                         <tr>
                             <td>
-                                {{$follower->post->title}}
+                                <a href="{{route('post.single', ['slug' =>$follower->post->slug])}}">{{$follower->post->title}}</a>
                             </td>
                             <td>
                                 <form method="post" action="{{route('followers.delete', ['id' => $follower->id])}}">
