@@ -13,9 +13,9 @@ class FollowerController extends Controller
     public function index(){
         $followers = [];
         if(!Auth::user()->admin){
-            $followers = Follower::where('user_id', Auth::id())->with('post')->with('user')->get();
+            $followers = Follower::has('post')->where('user_id', Auth::id())->with('post')->with('user')->get();
         }else{
-            $followers = Follower::with('post')->with('user')->all();
+            $followers = Follower::has('post')->with('post')->with('user')->where()->all();
         }
         return response()->json( $followers );
     }
