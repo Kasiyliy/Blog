@@ -15,9 +15,9 @@ class FollowersController extends Controller
 
         $followers = [];
         if(!Auth::user()->admin){
-            $followers = Follower::where('user_id', Auth::id())->get();
+            $followers = Follower::with('post')->with('user')->where('user_id', Auth::id())->get();
         }else{
-            $followers = Follower::all();
+            $followers = Follower::with('post')->with('user')->all();
         }
         return view('admin.follows.index')
             ->with('followers', $followers);
