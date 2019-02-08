@@ -21,7 +21,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index')->with('users',User::with('profile')->get());
+        return view('admin.users.index')->with('users',User::has('profile')->with('profile')->get());
     }
 
     /**
