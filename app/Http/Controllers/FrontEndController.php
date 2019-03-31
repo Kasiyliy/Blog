@@ -18,7 +18,7 @@ class FrontEndController extends Controller
 
         return view('index')
             ->with('title', Setting::first()->site_name)
-            ->with('categories', Category::take(5)->get())
+            ->with('categories', Category::take(5)->has('posts')->get())
             ->with('posts', $posts)
             ->with('tutorial', Category::find(1))
             ->with('python', Category::find(2))
@@ -37,7 +37,7 @@ class FrontEndController extends Controller
             ->with('post',$post)
             ->with('title', $post->title)
             ->with('settings', Setting::first())
-            ->with('categories', Category::take(5)->get())
+            ->with('categories', Category::take(5)->has('posts')->get())
             ->with('next', Post::find($next_id))
             ->with('prev', Post::find($prev_id))
             ->with('tags', Tag::all())
@@ -54,7 +54,7 @@ class FrontEndController extends Controller
             ->with('title',$category->name)
             ->with('settings', Setting::first())
             ->with('tags', Tag::all())
-            ->with('categories', Category::take(5)->get());
+            ->with('categories', Category::take(5)->has('posts')->get());
     }
 
     public function tag($id)
@@ -64,6 +64,6 @@ class FrontEndController extends Controller
             ->with('tag',$tag)
             ->with('title',$tag->tag)
             ->with('settings', Setting::first())
-            ->with('categories', Category::take(5)->get());
+            ->with('categories', Category::take(5)->has('posts')->get());
     }
 }
