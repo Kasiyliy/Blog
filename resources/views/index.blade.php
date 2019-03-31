@@ -50,7 +50,7 @@
     <div class="container">
         <div class="row">
             @foreach($posts as $post)
-                <div class="col-lg-6">
+                <div class="col-6">
                     <article class="post post-standard has-post-thumbnail sticky">
                         <div class="post-thumb">
                             <img class="img img-fluid" src="{{$post->featured}}" alt="{{$post->title}}">
