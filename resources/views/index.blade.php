@@ -50,7 +50,7 @@
     <div class="container">
         <div class="row">
             @foreach($posts as $post)
-                <div class="col col-lg-4">
+                <div class="col col-lg-4 text-center">
                     <article class="post post-standard has-post-thumbnail sticky">
                         <div class="post-thumb">
                             <img src="{{$post->featured}}" alt="{{$post->title}}">
@@ -65,7 +65,7 @@
                         <div class="post__content">
                             <div class="post__content-info">
                                 <h2 class="post__title entry-title text-center">
-                                    <a href="{{route('post.single',['slug'=>$post->slug])}}">{{$post->title}}</a>
+                                    <p class="text-center">{{$post->title}}</p>
                                 </h2>
                                 <div class="post-additional-info">
                                     <span class="post__date">
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <a style="background-color: darkred" class="btn btn-link" href="{{route('post.single',['slug'=>$post->slug])}}">Read more</a>
                     </article>
                 </div>
             @endforeach

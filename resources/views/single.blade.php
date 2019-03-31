@@ -2,9 +2,30 @@
 
 @section('content')
 
+
+    <div class="container">
+        <div class="row medium-padding120">
+            <main class="main">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <article class="hentry post post-standard-details">
+
+                        <h1 class="stunning-header-title text-center" style="text-decoration: underline">{{$post->title}}</h1>
+                        <br>
+                        <div class="post-thumb img-thumbnail thumbnail" style="width: 100%">
+                            <img class="img img-responsive" src="{{$post->featured}}" alt="{{$post->title}}">
+                        </div>
+
+                    </article>
+                </div>
+
+                <!-- End Sidebar-->
+
+            </main>
+        </div>
+    </div>
+
     <div class="stunning-header stunning-header-bg-lightviolet">
         <div class="stunning-header-content">
-            <h1 class="stunning-header-title">{{$post->title}}</h1>
             @if(!$followers)
                 <form action="{{route('follow' , ['id' =>$post->id])}}" method="POST">
                     {{csrf_field()}}
@@ -29,9 +50,6 @@
                 <div class="col-lg-10 col-lg-offset-1">
                     <article class="hentry post post-standard-details">
 
-                        <div class="post-thumb img-thumbnail thumbnail">
-                            <img class="img img-responsive" src="{{$post->featured}}" alt="$post->title">
-                        </div>
 
                         <div class="post__content">
 
