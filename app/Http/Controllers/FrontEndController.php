@@ -20,9 +20,6 @@ class FrontEndController extends Controller
             ->with('title', Setting::first()->site_name)
             ->with('categories', Category::take(5)->has('posts')->get())
             ->with('posts', $posts)
-            ->with('tutorial', Category::find(1))
-            ->with('python', Category::find(2))
-            ->with('laravel', Category::find(3))
             ->with('settings', Setting::first());
     }
 

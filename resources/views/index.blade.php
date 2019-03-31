@@ -93,44 +93,12 @@
         <div class="row medium-padding120 bg-border-color">
             <div class="container">
                 <div class="col-lg-12">
-                    <div class="offers">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                <div class="heading">
-                                    <h4 class="h1 heading-title">{{$tutorial ? $tutorial->name : ""}}</h4>
-                                    <div class="heading-line">
-                                        <span class="short-line"></span>
-                                        <span class="long-line"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="case-item-wrap">
-                                @if($tutorial)
-                                    @foreach($tutorial->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                            <div class="case-item">
-                                                <div class="case-item__thumb">
-                                                    <img src="{{$post->featured}}" alt="{{$post->title}}">
-                                                </div>
-                                                <h6 class="case-item__title text-center"><a
-                                                            href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="padded-50"></div>
-                    @if($python)
+                    @foreach($categories as $category)
                         <div class="offers">
                             <div class="row">
                                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                     <div class="heading">
-                                        <h4 class="h1 heading-title">{{$python->name}}</h4>
+                                        <h4 class="h1 heading-title">{{$category ? $category->name : ""}}</h4>
                                         <div class="heading-line">
                                             <span class="short-line"></span>
                                             <span class="long-line"></span>
@@ -140,55 +108,25 @@
                             </div>
                             <div class="row">
                                 <div class="case-item-wrap">
-                                    @foreach($python->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                            <div class="case-item">
-                                                <div class="case-item__thumb">
-                                                    <img src="{{$post->featured}}" alt="{{$post->title}}">
+                                    @if($category)
+                                        @foreach($category->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                <div class="case-item">
+                                                    <div class="case-item__thumb">
+                                                        <img src="{{$post->featured}}" alt="{{$post->title}}">
+                                                    </div>
+                                                    <h6 class="case-item__title text-center"><a
+                                                                href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
+                                                    </h6>
                                                 </div>
-                                                <h6 class="case-item__title text-center"><a
-                                                            href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
-                                                </h6>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
-                    <div class="padded-50"></div>
-                    @if($laravel)
-                        <div class="offers">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="heading">
-                                        <h4 class="h1 heading-title">{{$laravel->name}}</h4>
-                                        <div class="heading-line">
-                                            <span class="short-line"></span>
-                                            <span class="long-line"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="case-item-wrap">
-                                    @foreach($laravel->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                            <div class="case-item">
-                                                <div class="case-item__thumb">
-                                                    <img src="{{$post->featured}}" alt="{{$post->title}}">
-                                                </div>
-                                                <h6 class="case-item__title text-center"><a
-                                                            href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    <div class="padded-50"></div>
+                        <div class="padded-50"></div>
+                    @endforeach
                 </div>
             </div>
         </div>
