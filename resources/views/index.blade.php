@@ -48,13 +48,13 @@
     <div class="header-spacer"></div>
 
     <div class="container">
-        <div class="row text-center">
+        <div class="row">
             @foreach($posts as $post)
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="{{$post->featured}}" alt="{{$post->title}}">
+                            <img class="img img-fluid" src="{{$post->featured}}" alt="{{$post->title}}">
                             <div class="overlay"></div>
                             <a href="{{$post->featured}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
