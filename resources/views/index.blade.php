@@ -53,7 +53,7 @@
                 <div class="col-lg-6">
                     <article class="post post-standard has-post-thumbnail sticky">
                         <div class="post-thumb">
-                            <img class="img img-fluid" src="{{$post->featured}}" alt="{{$post->title}}">
+                            <img src="{{$post->featured}}" alt="{{$post->title}}">
                             <div class="overlay"></div>
                             <a href="{{$post->featured}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
