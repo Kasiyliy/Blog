@@ -48,9 +48,9 @@
     <div class="header-spacer"></div>
 
     <div class="container">
-        <div class="row">
+        <div class="row text-center">
             @foreach($posts as $post)
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
