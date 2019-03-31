@@ -84,7 +84,6 @@ class PostsController extends Controller
         $featured_new_name = time().$featured->getClientOriginalName();
 
         $featured->move('uploads/posts',$featured_new_name);
-        dd($request->tags);
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
