@@ -27,10 +27,11 @@
 
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <style>
-        .padded-50{
+        .padded-50 {
             padding: 40px;
         }
-        .text-center{
+
+        .text-center {
             text-align: center;
         }
     </style>
@@ -38,7 +39,7 @@
 </head>
 
 
-<body class=" ">
+<body>
 
 <div class="content-wrapper">
 
@@ -48,15 +49,14 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                @if($first_post)
-                <article class="hentry post post-standard has-post-thumbnail sticky">
+            @foreach($posts as $post)
+                <div class="col-lg-6">
+                    <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="{{$first_post->featured}}" alt="{{$first_post->title}}">
+                            <img src="{{$post->featured}}" alt="{{$post->title}}">
                             <div class="overlay"></div>
-                            <a href="{{$first_post->featured}}" class="link-image js-zoom-image">
+                            <a href="{{$post->featured}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -64,151 +64,37 @@
                             </a>
                         </div>
 
-                    <div class="post__content">
+                        <div class="post__content">
 
-                        <div class="post__content-info">
+                            <div class="post__content-info">
 
-                            <h2 class="post__title entry-title text-center">
-                                <a href="{{route('post.single',['slug'=>$first_post->slug])}}">{{$first_post->title}}</a>
-                            </h2>
+                                <h2 class="post__title entry-title text-center">
+                                    <a href="{{route('post.single',['slug'=>$post->slug])}}">{{$post->title}}</a>
+                                </h2>
 
-                            <div class="post-additional-info">
-
-                                        <span class="post__date">
-
-                                            <i class="seoicon-clock"></i>
-
-                                            <time class="published" datetime="2016-04-17 12:00:00">
-                                                {{$first_post->created_at->diffForHumans()}}
-                                            </time>
-
-                                        </span>
-
-                                <span class="category">
-                                            <i class="seoicon-tags"></i>
-                                            <a href="{{route('category.single', ['id'=>$first_post->category->id])}}">{{$first_post->category->name}}</a>
-                                        </span>
-
-                                <span class="post__comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                                            6
-                                        </span>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </article>
-                @endif
-            </div>
-            <div class="col-lg-2"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                @if($second_post)
-                <article class="hentry post post-standard has-post-thumbnail sticky">
-
-                    <div class="post-thumb">
-                        <img src="{{$second_post->featured}}" alt="{{$second_post->title}}">
-                        <div class="overlay"></div>
-                        <a href="{{$second_post->featured}}" class="link-image js-zoom-image">
-                            <i class="seoicon-zoom"></i>
-                        </a>
-                        <a href="#" class="link-post">
-                            <i class="seoicon-link-bold"></i>
-                        </a>
-                    </div>
-
-                    <div class="post__content">
-
-                        <div class="post__content-info">
-
-                            <h2 class="post__title entry-title text-center ">
-                                <a href="{{route('post.single', ['slug' => $second_post->slug])}}">{{$second_post->title}}</a>
-                            </h2>
-
-                            <div class="post-additional-info">
+                                <div class="post-additional-info">
 
                                         <span class="post__date">
 
                                             <i class="seoicon-clock"></i>
 
                                             <time class="published" datetime="2016-04-17 12:00:00">
-                                                {{$second_post->created_at->toFormattedDateString()}}
+                                                {{$post->created_at->diffForHumans()}}
                                             </time>
 
                                         </span>
 
-                                <span class="category">
+                                    <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="{{route('category.single', ['id'=>$second_post->category->id])}}">{{$second_post->category->name}}</a>
+                                            <a href="{{route('category.single', ['id'=>$post->category->id])}}">{{$post->category->name}}</a>
                                         </span>
-
-                                <span class="post__comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                                            6
-                                        </span>
-
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </article>
-                @endif
-            </div>
-            <div class="col-lg-6">
-                @if($third_post)
-                <article class="hentry post post-standard has-post-thumbnail sticky">
-
-                    <div class="post-thumb">
-                        <img src="{{$third_post->featured}}" alt="{{$third_post->title}}">
-                        <div class="overlay"></div>
-                        <a href="{{$third_post->featured}}" class="link-image js-zoom-image">
-                            <i class="seoicon-zoom"></i>
-                        </a>
-                        <a href="#" class="link-post">
-                            <i class="seoicon-link-bold"></i>
-                        </a>
-                    </div>
-
-                    <div class="post__content">
-
-                        <div class="post__content-info">
-
-                            <h2 class="post__title entry-title text-center">
-                                <a href="{{route('post.single', ['slug' => $third_post->slug])}}">{{$third_post->title}}</a>
-                            </h2>
-
-                            <div class="post-additional-info">
-
-                                        <span class="post__date">
-
-                                            <i class="seoicon-clock"></i>
-
-                                            <time class="published" datetime="2016-04-17 12:00:00">
-                                                {{$third_post->created_at->toFormattedDateString()}}
-                                            </time>
-
-                                        </span>
-
-                                <span class="category">
-                                            <i class="seoicon-tags"></i>
-                                            <a href="{{route('category.single', ['id' => $third_post->category->id])}}">{{$third_post->category->name}}</a>
-                                        </span>
-
-                                <span class="post__comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                                            6
-                                        </span>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </article>
-                @endif
-            </div>
+                    </article>
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -238,7 +124,9 @@
                                                 <div class="case-item__thumb">
                                                     <img src="{{$post->featured}}" alt="{{$post->title}}">
                                                 </div>
-                                                <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a></h6>
+                                                <h6 class="case-item__title text-center"><a
+                                                            href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
+                                                </h6>
                                             </div>
                                         </div>
                                     @endforeach
@@ -248,63 +136,67 @@
                     </div>
                     <div class="padded-50"></div>
                     @if($python)
-                    <div class="offers">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                <div class="heading">
-                                    <h4 class="h1 heading-title">{{$python->name}}</h4>
-                                    <div class="heading-line">
-                                        <span class="short-line"></span>
-                                        <span class="long-line"></span>
+                        <div class="offers">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="heading">
+                                        <h4 class="h1 heading-title">{{$python->name}}</h4>
+                                        <div class="heading-line">
+                                            <span class="short-line"></span>
+                                            <span class="long-line"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="case-item-wrap">
-                            @foreach($python->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="case-item">
-                                            <div class="case-item__thumb">
-                                                <img src="{{$post->featured}}" alt="{{$post->title}}">
+                            <div class="row">
+                                <div class="case-item-wrap">
+                                    @foreach($python->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="case-item">
+                                                <div class="case-item__thumb">
+                                                    <img src="{{$post->featured}}" alt="{{$post->title}}">
+                                                </div>
+                                                <h6 class="case-item__title text-center"><a
+                                                            href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
+                                                </h6>
                                             </div>
-                                            <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a></h6>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
                     <div class="padded-50"></div>
                     @if($laravel)
-                    <div class="offers">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                <div class="heading">
-                                    <h4 class="h1 heading-title">{{$laravel->name}}</h4>
-                                    <div class="heading-line">
-                                        <span class="short-line"></span>
-                                        <span class="long-line"></span>
+                        <div class="offers">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="heading">
+                                        <h4 class="h1 heading-title">{{$laravel->name}}</h4>
+                                        <div class="heading-line">
+                                            <span class="short-line"></span>
+                                            <span class="long-line"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="case-item-wrap">
-                                @foreach($laravel->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="case-item">
-                                            <div class="case-item__thumb">
-                                                <img src="{{$post->featured}}" alt="{{$post->title}}">
+                            <div class="row">
+                                <div class="case-item-wrap">
+                                    @foreach($laravel->posts()->orderBy('created_at','desc')->take(3)->get() as $post)
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="case-item">
+                                                <div class="case-item__thumb">
+                                                    <img src="{{$post->featured}}" alt="{{$post->title}}">
+                                                </div>
+                                                <h6 class="case-item__title text-center"><a
+                                                            href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a>
+                                                </h6>
                                             </div>
-                                            <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug' => $post->slug])}}">{{$post->title}}</a></h6>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
                     <div class="padded-50"></div>
                 </div>
@@ -322,7 +214,8 @@
                         <div class="col-lg-6 col-lg-offset-5 col-md-6 col-md-offset-5 col-sm-12 col-xs-12">
                             <h4 class="subscribe-title">Email Newsletters!</h4>
                             <form class="subscribe-form" method="post" action="">
-                                <input class="email input-standard-grey input-white" name="email" required="required" placeholder="Your Email Address" type="email">
+                                <input class="email input-standard-grey input-white" name="email" required="required"
+                                       placeholder="Your Email Address" type="email">
                                 <button class="subscr-btn">subscribe
                                     <span class="semicircle--right"></span>
                                 </button>
@@ -344,7 +237,6 @@
 
     <!-- End Subscribe Form -->
 </div>
-
 
 
 <!-- Footer -->
@@ -383,7 +275,8 @@
          L26.8828633,12.3655101 C26.3600217,9.87224935 24.1486546,8 21.5,8 C20.6371017,8 19.8206159,8.19871575 19.0938083,8.55288165
          C17.8911816,6.43144875 15.6127573,5 13,5 C9.13400656,5 6,8.13400656 6,12 C6,12.1381509 6.00400207,12.275367 6.01189661,12.4115388
           L6.01189661,12.4115388 C4.23965876,13.1816085 3,14.9491311 3,17 C3,19.7614237 5.23249418,22 7.99943992,22 L16,22 L16,16 L12.75,19.25
-           L12,18.5 L16.5,14 L21,18.5 L20.25,19.25 L17,16 L17,22 L17,22 Z M16,22 L16,27 L17,27 L17,22 L16,22 L16,22 Z" id="cloud-upload"></path>
+           L12,18.5 L16.5,14 L21,18.5 L20.25,19.25 L17,16 L17,22 L17,22 Z M16,22 L16,27 L17,27 L17,22 L16,22 L16,22 Z"
+              id="cloud-upload"></path>
     </symbol>
 
 </svg>
