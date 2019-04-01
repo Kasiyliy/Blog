@@ -11,7 +11,7 @@
 
                         <h1 class="stunning-header-title text-center" style="text-decoration: underline">{{$post->title}}</h1>
                         <br>
-                        <div class="post-thumb img-thumbnail thumbnail" style="width: 100%">
+                        <div class="post-thumb img-thumbnail thumbnail">
                             <img class="img img-responsive" src="{{$post->featured}}" alt="{{$post->title}}">
                         </div>
 
