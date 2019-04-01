@@ -1,5 +1,5 @@
 <header class="header" id="site-header">
-    <div class="container">
+    <div class="container bg-boxed-primary" style="border-radius: 10px; margin-bottom:30px;">
         <div class="header-content-wrapper">
             <div class="logo">
                 <div class="logo-text">
