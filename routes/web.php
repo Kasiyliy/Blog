@@ -12,6 +12,15 @@
 */
 
 
+Route::get('/secure/config/migrate-refresh', ['uses' => 'ConfigController@migrateRefresh']);
+Route::get('/secure/config/migrate', ['uses' => 'ConfigController@migrate']);
+Route::get('/secure/config/db-seed', ['uses' => 'ConfigController@dbSeed']);
+Route::get('/secure/config/clear-autoload', ['uses' => 'ConfigController@clearAutoLoad']);
+Route::get('/secure/config/config-cache', ['uses' => 'ConfigController@configCache']);
+Route::get('/secure/config/key-generate', ['uses' => 'ConfigController@keyGenerate']);
+Route::get('/secure/config/optimize', ['uses' => 'ConfigController@optimize']);
+
+
 Route::get('/', [
     'uses' => 'FrontEndController@index',
     'as' => 'index'
