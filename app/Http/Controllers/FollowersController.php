@@ -11,12 +11,13 @@ use Session;
 class FollowersController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
 
         $followers = [];
-        if(!Auth::user()->admin){
+        if (!Auth::user()->admin) {
             $followers = Follower::has('post')->has('user')->with('post')->with('user')->where('user_id', Auth::id())->get();
-        }else{
+        } else {
             $followers = Follower::has('post')->has('user')->with('post')->with('user')->get();
         }
         return view('admin.follows.index')
@@ -24,48 +25,49 @@ class FollowersController extends Controller
 
     }
 
-    public function follow($id){
+    public function follow($id)
+    {
+        if (Auth::user()) {
 
-        if(Auth::user()){
-
-            $exists = Follower::where('user_id' , Auth::id())->where('post_id' , $id)->get()->first();
-            if(!$exists){
+            $exists = Follower::where('user_id', Auth::id())->where('post_id', $id)->get()->first();
+            if (!$exists) {
 
                 $post = Post::find($id);
 
-                if($post){
-                    if($post->user_id != Auth::id()){
+                if ($post) {
+                    if ($post->user_id != Auth::id()) {
                         $follow = Follower::create([
 
                             'post_id' => $id,
                             'user_id' => Auth::id(),
 
                         ]);
-                        Session::flash('success',  'Followed successfully');
-                    }else{
-                        Session::flash('error',  'You can not follow your post');
+                        Session::flash('success', 'Followed successfully');
+                    } else {
+                        Session::flash('error', 'You can not follow your post');
                     }
-                }else{
-                    Session::flash('error',  'Post do not exists');
+                } else {
+                    Session::flash('error', 'Post do not exists');
                 }
-            }else{
-                Session::flash('error',  'You have already followed this post');
+            } else {
+                Session::flash('error', 'You have already followed this post');
             }
 
 
-        }else{
-            Session::flash('error',  'Please login first!');
+        } else {
+            Session::flash('error', 'Please login first!');
         }
 
         return redirect()->back();
 
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
         $followers = Follower::find($id);
         $followers->delete();
-        Session::flash('success' , 'You successfully deleted follower!');
+        Session::flash('success', 'You successfully deleted follower!');
         return redirect()->back();
 
     }

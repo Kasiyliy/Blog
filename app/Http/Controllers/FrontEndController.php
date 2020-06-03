@@ -35,7 +35,9 @@ class FrontEndController extends Controller
         if ($category_id) {
             $postsQuery->where('category_id', $category_id);
         }
-        $posts = $postsQuery->paginate(3);
+        $posts = $postsQuery
+            ->orderBy('created_at', 'descs')
+            ->paginate(3);
         $categories = Category::withCount('posts')->get();
         $tags = Tag::all();
         return view('client.index', compact('categories', 'posts', 'tags'));

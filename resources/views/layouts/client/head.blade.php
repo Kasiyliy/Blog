@@ -23,3 +23,4 @@
 <link rel="stylesheet" href="{{asset('client/css/flaticon.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/icomoon.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/style.css')}}">
+<link href="{{asset('css/toastr.min.css')}}" rel="stylesheet">

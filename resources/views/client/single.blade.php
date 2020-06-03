@@ -11,6 +11,7 @@
             @endforeach
         </div>
     </div>
+
     <div class="about-author d-flex p-4 bg-light">
         <div class="row">
             <div class="col-3">
@@ -19,11 +20,34 @@
                 </div>
             </div>
             <div class="col-9">
-
                 <div class="desc">
                     <h3>{{$post->user->name}}</h3>
                     <p>{{($post->user->profile->about)}}</p>
                 </div>
+                @auth
+                    <div class="desc">
+                        @if(!$followers)
+                            <form action="{{route('follow' , ['id' =>$post->id])}}" method="POST">
+                                {{csrf_field()}}
+                                <h2 class="text-right">
+                                    <button class="btn btn-success" type="submit">Follow</button>
+                                </h2>
+                            </form>
+                        @else
+                            <form action="{{route('followers.delete' , ['id' => $followers->id])}}" method="POST">
+                                {{csrf_field()}}
+                                <h2 class="text-white text-right">
+                                    <button class="btn btn-danger" type="submit">Unfollow</button>
+                                </h2>
+                            </form>
+                        @endif
+                    </div>
+                @endauth
+                @guest
+                    <div class="desc">
+                        <h5 style="color: red;">Please authorize to follow this event</h5>
+                    </div>
+                @endguest
             </div>
         </div>
     </div>

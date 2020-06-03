@@ -10,6 +10,22 @@
 <script src="{{asset('client/js/aos.js')}}"></script>
 <script src="{{asset('client/js/jquery.animateNumber.min.js')}}"></script>
 <script src="{{asset('client/js/scrollax.min.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="{{asset('client/js/google-map.js')}}"></script>
-<script src="{{asset('client/js/main.js')}}"></script>
+<script src="{{asset('client/js/main.js')}}"></script><script src="{{asset('js/toastr.min.js')}}"></script>
+<script>
+    toastr.options.closeButton = true;
+    @if(session()->has('success'))
+    toastr.success("{{session()->get('success')}}");
+    @endif
+
+    @if(session()->has('info'))
+    toastr.info("{{session()->get('info')}}");
+    @endif
+
+    @if(session()->has('error'))
+    toastr.info("{{session()->get('error')}}");
+    @endif
+
+    @if(session()->has('warning'))
+    toastr.info("{{session()->get('warning')}}");
+    @endif
+</script>
