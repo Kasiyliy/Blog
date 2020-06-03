@@ -1,4 +1,4 @@
-<div id="disqus_thread"></div>
+<div id="disqus_thread" style="width: 100%;"></div>
 <script>
 
     /**

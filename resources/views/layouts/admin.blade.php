@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('layouts.ahead')
+    @include('layouts.admin.ahead')
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-    @include('layouts.anav')
-    @include('layouts.asidebar')
+    @include('layouts.admin.anav')
+    @include('layouts.admin.asidebar')
     <div class="content-wrapper">
         @yield('content')
     </div>
-    @include('layouts.afooter')
+    @include('layouts.admin.afooter')
 </div>
-@include('layouts.ascripts')
+@include('layouts.admin.ascripts')
 @yield('scripts')
 </body>
 </html>

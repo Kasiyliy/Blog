@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('layouts.ahead')
+    @include('layouts.admin.ahead')
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -81,7 +81,7 @@
 </div>
 <!-- /.login-box -->
 
-@include('layouts.ascripts')
+@include('layouts.admin.ascripts')
 
 </body>
 </html>

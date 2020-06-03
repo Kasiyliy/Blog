@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use App\Tag;
-use Illuminate\Support\Facades\Storage;
+use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Session;
-use App\Post;
-use Illuminate\Http\Request;
-use Auth;
 
 class PostsController extends Controller
 {
