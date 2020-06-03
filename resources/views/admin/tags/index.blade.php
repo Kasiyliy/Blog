@@ -35,7 +35,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{route('tag.edit' , ['id' => $tag->id]) }}" class="btn btn-xs btn-info">
-                                                    <span class="fa fa-pencil"></span>
+                                                    <span class="fa fa-edit"></span>
                                                 </a>
                                             </td>
                                             <td>
