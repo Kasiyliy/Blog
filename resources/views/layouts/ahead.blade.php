@@ -3,7 +3,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>AdminLTE 3 | Starter</title>
+<title>SkillSHARE</title>
 <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
 <link rel="stylesheet" href="{{asset('admin/css/adminlte.min.css')}}">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
