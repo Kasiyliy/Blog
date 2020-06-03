@@ -16,7 +16,7 @@
                             {{--<span>5 Comment</span>--}}
                         </p>
                     </div>
-                    <p class="mb-4">{{str_limit(strip_tags($post->title), 15,'...')}}.</p>
+                    <p class="mb-4">{{str_limit(strip_tags($post->content), 15,'...')}}.</p>
                     <p><a href="{{route('post.single', ['slug' => $post->slug])}}" class="btn-custom">Read More <span
                                     class="ion-ios-arrow-forward"></span></a></p>
                 </div>
