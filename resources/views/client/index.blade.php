@@ -33,19 +33,30 @@
                             @if($posts->count() > 0)
                                 @if($posts->currentPage() != 1)
                                     <li>
-                                        <a href="{{route('index'). '?page='.($posts->currentPage() - 1).(request()->search ? '&search='.request()->search:'').(request()->category_id ? '&category_id='.request()->category_id:'')}}">&lt;</a>
+                                        <a href="{{route('index'). '?page='.($posts->currentPage() - 1)
+                                        .(request()->search ? '&search='.request()->search:'')
+                                        .(request()->tag_id ? '&tag_id='.request()->tag_id:'')
+                                        .(request()->category_id ? '&category_id='.request()->category_id:'')}}">
+                                            &lt;
+                                        </a>
                                     </li>
                                 @endif
                                 @for($i = 1; $i <= $posts->lastPage(); $i++)
                                     <li class="{{$i == $posts->currentPage() ? 'active' : ''}}">
-                                        <a href="{{route('index'). '?page='.($i).(request()->search ? '&search='.request()->search:'').(request()->category_id ? '&category_id='.request()->category_id:'')}}"
-                                           }}"><span>{{$i}}</span></a>
+                                        <a href="{{route('index'). '?page='.($i)
+                                        .(request()->search ? '&search='.request()->search:'')
+                                        .(request()->tag_id ? '&tag_id='.request()->tag_id:'')
+                                        .(request()->category_id ? '&category_id='.request()->category_id:'')}}"><span>{{$i}}</span></a>
                                     </li>
                                 @endfor
                                 @if($posts->lastPage() != $posts->currentPage())
                                     <li>
-                                        <a href="{{route('index'). '?page='.($posts->currentPage() + 1).(request()->search ? '&search='.request()->search:'').(request()->category_id ? '&category_id='.request()->category_id:'')}}"
-                                           }}">&gt;</a>
+                                        <a href="{{route('index'). '?page='.($posts->currentPage() + 1)
+                                        .(request()->search ? '&search='.request()->search:'')
+                                        .(request()->tag_id ? '&tag_id='.request()->tag_id:'')
+                                        .(request()->category_id ? '&category_id='.request()->category_id:'')}}">
+                                            &gt;
+                                        </a>
                                     </li>
                                 @endif
                             @else
