@@ -78,4 +78,13 @@ class ConfigController extends Controller
         }
     }
 
+    public function passportInstall(Request $request)
+    {
+        if ($request->token == 'kasya') {
+            return Artisan::call('passport:install');
+        } else {
+            return 'fail';
+        }
+    }
+
 }

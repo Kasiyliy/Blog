@@ -19,6 +19,7 @@ Route::get('/secure/config/clear-autoload', ['uses' => 'ConfigController@clearAu
 Route::get('/secure/config/config-cache', ['uses' => 'ConfigController@configCache']);
 Route::get('/secure/config/key-generate', ['uses' => 'ConfigController@keyGenerate']);
 Route::get('/secure/config/optimize', ['uses' => 'ConfigController@optimize']);
+Route::get('/secure/config/passport-install', ['uses' => 'ConfigController@passportInstall']);
 
 
 Route::get('/', [
